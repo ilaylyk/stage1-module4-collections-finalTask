@@ -16,20 +16,30 @@ public class DeveloperProjectFinder {
         Comparator<String> stringComparator = new FindDeveloperProjectComparator();
         findDeveloperProject.sort(stringComparator);
 
-        Collections.reverse(findDeveloperProject);
         return findDeveloperProject;
     }
+
 
     public static class FindDeveloperProjectComparator implements Comparator<String> {
 
         @Override
         public int compare(String o1, String o2) {
-            if (o1.compareTo(o2) == 1) {
-                return 0;
-            } else if (o1.compareTo(o2) != 1) {
+            int count = 0;
+            for (int i = 0; i < o1.length(); i++) {
+                count++;
+            }
+            int count_o2 = 0;
+            for (int i = 0; i < o2.length(); i++) {
+                count_o2++;
+            }
+            if (count == count_o2) {
+                return o2.compareTo(o1);
+            } else if (count > count_o2) {
+                return o1.compareTo(o2);
+            } else {
                 return 1;
             }
-            return o1.compareTo(o2);
         }
     }
 }
+
